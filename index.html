@@ -79,14 +79,20 @@
     animation: float 4s ease-in-out infinite;
   }
 
-  /* Main Image & Slideshow Transitions */
+  /* 
+   * UPDATED: Main Image & Slideshow Transitions 
+   * Adjusted to a medium size (max-width: 400px) with a fixed height 
+   * and object-fit to create a perfect, consistent box shape.
+   */
   img#main-image {
-    width: 80%;
-    max-width: 600px;
+    width: 90%;
+    max-width: 400px;
+    height: 400px;
+    object-fit: cover; /* Ensures the image fills the box without stretching */
     border-radius: 12px;
     box-shadow: 0 8px 30px rgba(0,0,0,0.1);
     margin-bottom: 40px;
-    transition: opacity 0.8s ease-in-out; /* Controls the crossfade speed */
+    transition: opacity 0.8s ease-in-out; 
   }
   
   /* Class to fade out the image during the slideshow */
@@ -114,7 +120,9 @@
 
   @media (max-width: 600px) {
     h1#bday-text { font-size: 48px; }
-    img#main-image { width: 90%; }
+    img#main-image { 
+      height: 300px; /* Slightly smaller box on mobile */
+    }
     #journey-text { font-size: 16px; padding: 0 10px;}
   }
 </style>
@@ -134,7 +142,7 @@
   
   <div id="reveal-immediate" class="fade-in">
     <h1 id="bday-text">Happy Birthday Kunju 💎</h1>
-    <img id="main-image" src="Us.jpg" alt="Us" onload="this.parentNode.classList.add('show')">
+    <img id="main-image" src="Us.jpg" alt="Us" onload="this.parentNode.classList.add('show')" onerror="console.error('Failed to load Us.jpg. Check spelling and case-sensitivity in GitHub.')">
   </div>
 
   <audio id="bgm" src="Happy-Birthday.mp3" loop></audio>
@@ -142,7 +150,7 @@
   <div id="journey-block" class="fade-in">
     <div id="journey-text">
     
-It started back in July 2024, when she joined as a junior resource. We began with simple task check-ins, but those calls soon became about everything else—our personal lives, our dreams. Slowly, a beautiful bond formed.
+It started back in July 2024, when you joined as a junior resource. We began with simple task check-ins, but those calls soon became about everything else—our personal lives, our dreams. Slowly, a beautiful bond formed.
 
 Then came December 8, 2025. I remember the incredible tension, my heart pounding as I finally proposed. You were so calm, soothing my nerves, and on December 11, you said 'okay.' Meeting you just eight days later, on December 19, was magical. Since then, it’s been a whirlwind of long-distance love. We've weathered arguments, celebrated emotions, and shared countless long hours on late-night calls. Slowly, we realized we were addicted to each other, and on May 9, we truly knew it was forever. Through all the fights, we can't sleep without hearing each other's voice.
 
@@ -195,15 +203,12 @@ Even now, facing some difficult family issues that weigh heavy on us, I just wan
     
     // Change the image every 3.5 seconds
     setInterval(() => {
-        // Fade the current image out
         imgElement.classList.add('slide-hidden');
         
-        // Wait 800ms (matching CSS transition) for it to turn invisible, then swap the image and fade back in
         setTimeout(() => {
             imgElement.src = slideImages[currentSlide];
             currentSlide = (currentSlide + 1) % slideImages.length;
             
-            // Fade the new image back in
             imgElement.classList.remove('slide-hidden');
         }, 800); 
 
