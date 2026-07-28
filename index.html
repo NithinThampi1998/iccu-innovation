@@ -4,12 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>System Diagnostic - Endpoint A42187</title>
-<!-- Google Font for that stylish, aesthetic look -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
 <style>
-  /* 1. Reset and Fake Terminal Vibe */
+  /* Reset and Fake Terminal */
   body { 
     background-color: #0d1117; 
     color: #00ff00; 
@@ -20,9 +19,7 @@
     overflow-x: hidden;
     transition: background-color 3s ease, color 3s ease; 
   }
-  .hidden { display: none; }
   
-  /* The BAIT (Terminal Screen) */
   #terminal {
     height: 100vh;
     display: flex;
@@ -45,7 +42,7 @@
   }
   button#diag-btn:hover { background-color: #00cc00; }
 
-  /* 2. The SURPRISE Structure and Transitions */
+  /* Surprise Container */
   #surprise-container {
     width: 100%;
     min-height: 100vh;
@@ -54,10 +51,9 @@
     align-items: center;
     padding: 100px 20px;
     box-sizing: border-box;
-    display: none; /* Initially hidden */
+    display: none; 
   }
 
-  /* Fade-in for container elements */
   .fade-in {
     opacity: 0;
     transition: opacity 1.5s ease;
@@ -66,37 +62,39 @@
     opacity: 1;
   }
 
-  /* 3. Aesthetic Elements: Styling and Animation */
-  
-  /* Aesthetic background colors (fading to a soft, romantic theme) */
+  /* Aesthetic Mode */
   body.aesthetic-mode {
-    background-color: #fcfcfc; /* A soft, warm off-white */
+    background-color: #fcfcfc; 
     color: #3d3d3d;
   }
 
-  /* The Stylish Animated Heading */
+  /* Stylish Heading */
   h1#bday-text { 
     font-family: 'Great Vibes', cursive;
     font-size: 64px;
-    /* Soft, stylish gradient color */
     background: -webkit-linear-gradient(45deg, #f0a3cc, #b4dce1); 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 0 0 20px 0;
-    /* Motion: gentle floating animation */
     animation: float 4s ease-in-out infinite;
   }
 
-  /* The Main Image (Us.jpg) */
+  /* Main Image & Slideshow Transitions */
   img#main-image {
     width: 80%;
     max-width: 600px;
     border-radius: 12px;
     box-shadow: 0 8px 30px rgba(0,0,0,0.1);
     margin-bottom: 40px;
+    transition: opacity 0.8s ease-in-out; /* Controls the crossfade speed */
+  }
+  
+  /* Class to fade out the image during the slideshow */
+  .slide-hidden {
+    opacity: 0 !important;
   }
 
-  /* 4. Journey Description Text */
+  /* Journey Text */
   #journey-text {
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
@@ -104,17 +102,16 @@
     max-width: 700px;
     margin: 0 auto;
     text-align: left;
-    white-space: pre-line; /* respects line breaks and paragraph spacing */
+    white-space: pre-line; 
   }
 
-  /* Floating animation */
+  /* Animations */
   @keyframes float {
     0% { transform: translatey(0px); }
     50% { transform: translatey(-10px); }
     100% { transform: translatey(0px); }
   }
 
-  /* Mobile responsiveness */
   @media (max-width: 600px) {
     h1#bday-text { font-size: 48px; }
     img#main-image { width: 90%; }
@@ -124,7 +121,7 @@
 </head>
 <body>
 
-<!-- THE BAIT: Fake Terminal/Error -->
+<!-- Fake Terminal -->
 <div id="terminal">
   <h2>Fatal Error: 401 Unauthorized Payload</h2>
   <p>System signature mismatch detected in authentication request.</p>
@@ -132,20 +129,16 @@
   <button id="diag-btn" onclick="runPayload()">Start System Diagnostic</button>
 </div>
 
-<!-- THE SURPRISE CONTAINER -->
+<!-- Surprise Container -->
 <div id="surprise-container">
   
-  <!-- REVEAL PART 1: The aesthetic change and main image (Instant) -->
   <div id="reveal-immediate" class="fade-in">
     <h1 id="bday-text">Happy Birthday Kunju 💎</h1>
-    <!-- FILENAME ALIGNMENT: Uses 'Us.jpg' from image_0.png -->
     <img id="main-image" src="Us.jpg" alt="Us" onload="this.parentNode.classList.add('show')">
   </div>
 
-  <!-- AUDIO: FILENAME ALIGNMENT: Uses 'Happy-Birthday.mp3' from image_0.png -->
   <audio id="bgm" src="Happy-Birthday.mp3" loop></audio>
 
-  <!-- REVEAL PART 2: The Journey Narrative (Timed 2s delay) -->
   <div id="journey-block" class="fade-in">
     <div id="journey-text">
     
@@ -160,27 +153,61 @@ Even now, facing some difficult family issues that weigh heavy on us, I just wan
 </div>
 
 <script>
+  // Array of your other images to use in the slideshow
+  const slideImages = [
+    'CuteG.jpg', 
+    'CuteSlp.jpg', 
+    'Slp.jpg', 
+    'Ukk.jpg', 
+    'cuteH.jpg', 
+    'favG.jpg', 
+    'gs.jpg', 
+    'mu.jpg'
+  ];
+  let currentSlide = 0;
+
   function runPayload() {
-    // 1. Instantly hide the terminal
     document.getElementById('terminal').style.display = 'none';
     
-    // 2. Show the surprise container but keep elements faded out initially
     const container = document.getElementById('surprise-container');
     container.style.display = 'flex';
     
-    // 3. Trigger music and main aesthetic color shift (fast transition)
     const bgm = document.getElementById('bgm');
-    bgm.play().catch(error => { console.log("Auto-play blocked by browser. This is normal."); });
+    bgm.play().catch(error => { console.log("Audio blocked."); });
     document.body.classList.add('aesthetic-mode');
     
-    // 4. Reveal Step 1: Main Image + Heading (Show instantly if image is loaded)
-    // The main image's 'onload' event handles the `.show` class, adding a safety layer.
+    // 1. Show Heading and Us.jpg immediately
     document.getElementById('reveal-immediate').classList.add('show');
 
-    // 5. Reveal Step 2: Journey Narrative (The 2-second delay)
+    // 2. Reveal text after 2 seconds
     setTimeout(() => {
         document.getElementById('journey-block').classList.add('show');
-    }, 2000); // 2000ms = 2 seconds
+    }, 2000); 
+
+    // 3. Start the image slideshow after 5 seconds
+    setTimeout(() => {
+        startSlideshow();
+    }, 5000);
+  }
+
+  function startSlideshow() {
+    const imgElement = document.getElementById('main-image');
+    
+    // Change the image every 3.5 seconds
+    setInterval(() => {
+        // Fade the current image out
+        imgElement.classList.add('slide-hidden');
+        
+        // Wait 800ms (matching CSS transition) for it to turn invisible, then swap the image and fade back in
+        setTimeout(() => {
+            imgElement.src = slideImages[currentSlide];
+            currentSlide = (currentSlide + 1) % slideImages.length;
+            
+            // Fade the new image back in
+            imgElement.classList.remove('slide-hidden');
+        }, 800); 
+
+    }, 3500); 
   }
 </script>
 </body>
