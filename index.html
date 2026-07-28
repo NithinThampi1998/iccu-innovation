@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Diagnostic - Endpoint A42187</title>
+<!-- Google Font for that stylish, aesthetic look -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+<style>
+  /* 1. Reset and Fake Terminal Vibe */
+  body { 
+    background-color: #0d1117; 
+    color: #00ff00; 
+    font-family: 'Courier New', Courier, monospace; 
+    text-align: center; 
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    transition: background-color 3s ease, color 3s ease; 
+  }
+  .hidden { display: none; }
+  
+  /* The BAIT (Terminal Screen) */
+  #terminal {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  button#diag-btn { 
+    background-color: #00ff00; 
+    color: #0d1117; 
+    border: none; 
+    padding: 12px 28px; 
+    cursor: pointer; 
+    font-family: inherit; 
+    font-weight: bold;
+    font-size: 16px; 
+    border-radius: 4px;
+    margin-top: 30px;
+    transition: background-color 0.3s;
+  }
+  button#diag-btn:hover { background-color: #00cc00; }
+
+  /* 2. The SURPRISE Structure and Transitions */
+  #surprise-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 20px;
+    box-sizing: border-box;
+    display: none; /* Initially hidden */
+  }
+
+  /* Fade-in for container elements */
+  .fade-in {
+    opacity: 0;
+    transition: opacity 1.5s ease;
+  }
+  .show {
+    opacity: 1;
+  }
+
+  /* 3. Aesthetic Elements: Styling and Animation */
+  
+  /* Aesthetic background colors (fading to a soft, romantic theme) */
+  body.aesthetic-mode {
+    background-color: #fcfcfc; /* A soft, warm off-white */
+    color: #3d3d3d;
+  }
+
+  /* The Stylish Animated Heading */
+  h1#bday-text { 
+    font-family: 'Great Vibes', cursive;
+    font-size: 64px;
+    /* Soft, stylish gradient color */
+    background: -webkit-linear-gradient(45deg, #f0a3cc, #b4dce1); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0 0 20px 0;
+    /* Motion: gentle floating animation */
+    animation: float 4s ease-in-out infinite;
+  }
+
+  /* The Main Image (Us.jpg) */
+  img#main-image {
+    width: 80%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+  }
+
+  /* 4. Journey Description Text */
+  #journey-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left;
+    white-space: pre-line; /* respects line breaks and paragraph spacing */
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0% { transform: translatey(0px); }
+    50% { transform: translatey(-10px); }
+    100% { transform: translatey(0px); }
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 600px) {
+    h1#bday-text { font-size: 48px; }
+    img#main-image { width: 90%; }
+    #journey-text { font-size: 16px; padding: 0 10px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- THE BAIT: Fake Terminal/Error -->
+<div id="terminal">
+  <h2>Fatal Error: 401 Unauthorized Payload</h2>
+  <p>System signature mismatch detected in authentication request.</p>
+  <p>Please initialize localized diagnostic tool to verify endpoint data.</p>
+  <button id="diag-btn" onclick="runPayload()">Start System Diagnostic</button>
+</div>
+
+<!-- THE SURPRISE CONTAINER -->
+<div id="surprise-container">
+  
+  <!-- REVEAL PART 1: The aesthetic change and main image (Instant) -->
+  <div id="reveal-immediate" class="fade-in">
+    <h1 id="bday-text">Happy Birthday Kunju 💎</h1>
+    <!-- FILENAME ALIGNMENT: Uses 'Us.jpg' from image_0.png -->
+    <img id="main-image" src="Us.jpg" alt="Us" onload="this.parentNode.classList.add('show')">
+  </div>
+
+  <!-- AUDIO: FILENAME ALIGNMENT: Uses 'Happy-Birthday.mp3' from image_0.png -->
+  <audio id="bgm" src="Happy-Birthday.mp3" loop></audio>
+
+  <!-- REVEAL PART 2: The Journey Narrative (Timed 2s delay) -->
+  <div id="journey-block" class="fade-in">
+    <div id="journey-text">
+    
+It started back in July 2024, when she joined as a junior resource. We began with simple task check-ins, but those calls soon became about everything else—our personal lives, our dreams. Slowly, a beautiful bond formed.
+
+Then came December 8, 2025. I remember the incredible tension, my heart pounding as I finally proposed. You were so calm, soothing my nerves, and on December 11, you said 'okay.' Meeting you just eight days later, on December 19, was magical. Since then, it’s been a whirlwind of long-distance love. We've weathered arguments, celebrated emotions, and shared countless long hours on late-night calls. Slowly, we realized we were addicted to each other, and on May 9, we truly knew it was forever. Through all the fights, we can't sleep without hearing each other's voice.
+
+Even now, facing some difficult family issues that weigh heavy on us, I just want you to know, Kunju, that I cannot live without you. You are my entire life, and I will always love you. I am waiting for the beautiful moment we get together for real, and for the life we'll build with Nihan and Nihashvi. Love you so much, Kunju. 💎
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function runPayload() {
+    // 1. Instantly hide the terminal
+    document.getElementById('terminal').style.display = 'none';
+    
+    // 2. Show the surprise container but keep elements faded out initially
+    const container = document.getElementById('surprise-container');
+    container.style.display = 'flex';
+    
+    // 3. Trigger music and main aesthetic color shift (fast transition)
+    const bgm = document.getElementById('bgm');
+    bgm.play().catch(error => { console.log("Auto-play blocked by browser. This is normal."); });
+    document.body.classList.add('aesthetic-mode');
+    
+    // 4. Reveal Step 1: Main Image + Heading (Show instantly if image is loaded)
+    // The main image's 'onload' event handles the `.show` class, adding a safety layer.
+    document.getElementById('reveal-immediate').classList.add('show');
+
+    // 5. Reveal Step 2: Journey Narrative (The 2-second delay)
+    setTimeout(() => {
+        document.getElementById('journey-block').classList.add('show');
+    }, 2000); // 2000ms = 2 seconds
+  }
+</script>
+</body>
+</html>
